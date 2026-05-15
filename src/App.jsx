@@ -12,7 +12,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1200);
+    const timer = setTimeout(() => setLoading(false), 1000);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -34,12 +34,6 @@ export default function App() {
       observer.disconnect();
     };
   }, []);
-
-  const fade = (id) => ({
-    opacity: visible[id] ? 1 : 0,
-    transform: visible[id] ? "translateY(0px)" : "translateY(30px)",
-    transition: "all 0.6s ease",
-  });
 
   const projects = [
     {
@@ -67,9 +61,9 @@ export default function App() {
         <div style={styles.logo}>Muhammad Anra Bayu Pratama</div>
 
         <div style={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
-          <div style={styles.line}></div>
-          <div style={styles.line}></div>
-          <div style={styles.line}></div>
+          <span style={styles.line}></span>
+          <span style={styles.line}></span>
+          <span style={styles.line}></span>
         </div>
 
         {menuOpen && (
@@ -86,27 +80,25 @@ export default function App() {
         <div style={styles.heroContent}>
           <h1 style={styles.title}>Hello! I'm Anra</h1>
           <p style={styles.subtitle}>Video Editor & Graphic Designer</p>
-          <a href="#projects" style={styles.button}>View Projects</a>
         </div>
       </section>
 
       {/* ABOUT */}
-      <section id="about" ref={sections.about} style={{ ...styles.section, ...fade("about") }}>
+      <section id="about" ref={sections.about} style={styles.section}>
         <h2 style={styles.heading}>About Me</h2>
         <p style={styles.text}>
-          Creative video editor & graphic designer focused on cinematic storytelling,
-          motion graphics, and clean modern design.
+          Creative video editor & graphic designer focused on cinematic storytelling and modern design.
         </p>
       </section>
 
       {/* PROJECTS */}
-      <section id="projects" ref={sections.projects} style={{ ...styles.section, ...fade("projects") }}>
+      <section id="projects" ref={sections.projects} style={styles.sectionAlt}>
         <h2 style={styles.heading}>Projects</h2>
 
         <div style={styles.grid}>
           {projects.map((p, i) => (
             <div key={i} style={styles.card}>
-              <h3 style={styles.cardTitle}>{p.title}</h3>
+              <h3>{p.title}</h3>
               <p style={styles.text}>{p.desc}</p>
               <p style={styles.small}>{p.tools}</p>
             </div>
@@ -115,7 +107,7 @@ export default function App() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" ref={sections.contact} style={{ ...styles.section, ...fade("contact") }}>
+      <section id="contact" ref={sections.contact} style={styles.section}>
         <h2 style={styles.heading}>Contact</h2>
         <p style={styles.text}>Instagram: @bayuanra13</p>
         <p style={styles.text}>WhatsApp: 082169792999</p>
@@ -138,19 +130,21 @@ const styles = {
   navbar: {
     position: "fixed",
     top: 0,
+    left: 0,
     width: "100%",
+    zIndex: 9999,
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "15px 30px",
-    background: "rgba(255,255,255,0.9)",
+    padding: "15px 20px",
+    background: "rgba(255,255,255,0.95)",
     borderBottom: "1px solid #e5e7eb",
   },
 
   logo: {
+    fontSize: "14px",
     fontWeight: "bold",
     color: "#1e3a8a",
-    fontSize: "14px",
   },
 
   hamburger: {
@@ -191,7 +185,7 @@ const styles = {
   },
 
   title: {
-    fontSize: "56px",
+    fontSize: "52px",
     color: "#0f172a",
   },
 
@@ -199,19 +193,17 @@ const styles = {
     color: "#1e3a8a",
   },
 
-  button: {
-    display: "inline-block",
-    marginTop: "20px",
-    padding: "12px 24px",
-    border: "1px solid #1e3a8a",
-    color: "#1e3a8a",
-    textDecoration: "none",
-  },
-
   section: {
     padding: "100px 20px",
     maxWidth: "900px",
     margin: "auto",
+  },
+
+  sectionAlt: {
+    padding: "100px 20px",
+    maxWidth: "900px",
+    margin: "auto",
+    background: "#f8fafc",
   },
 
   heading: {
@@ -236,10 +228,6 @@ const styles = {
     border: "1px solid #e5e7eb",
     borderRadius: "10px",
     background: "#ffffff",
-  },
-
-  cardTitle: {
-    color: "#0f172a",
   },
 
   small: {
