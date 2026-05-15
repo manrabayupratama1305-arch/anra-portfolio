@@ -11,7 +11,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1800);
+    const timer = setTimeout(() => setLoading(false), 1200);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -36,39 +36,27 @@ export default function App() {
 
   const fade = (id) => ({
     opacity: visible[id] ? 1 : 0,
-    transform: visible[id] ? "translateY(0px)" : "translateY(40px)",
-    transition: "all 0.8s ease",
+    transform: visible[id] ? "translateY(0px)" : "translateY(30px)",
+    transition: "all 0.6s ease",
   });
 
   const projects = [
     {
       title: "Cinematic Brand Video",
-      desc: "High-energy cinematic edit for branding",
+      desc: "Video editing & storytelling",
       tools: "Premiere Pro · After Effects",
-      video: "https://cdn.coverr.co/videos/coverr-editing-video-on-laptop-9417/1080p.mp4",
     },
     {
-      title: "Motion Graphics Poster",
-      desc: "Animated promotional design",
+      title: "Motion Design",
+      desc: "Animated graphic content",
       tools: "After Effects · Photoshop",
-      video: "https://cdn.coverr.co/videos/coverr-typing-on-laptop-1556/1080p.mp4",
     },
     {
-      title: "Social Media Content Pack",
-      desc: "Design system for Instagram content",
+      title: "Social Media Design",
+      desc: "Content & branding visuals",
       tools: "Figma · Photoshop",
-      video: "https://cdn.coverr.co/videos/coverr-working-at-night-1558/1080p.mp4",
     },
   ];
-
-  if (loading) {
-    return (
-      <div style={styles.loading}>
-        <h1 style={styles.loadingText}>ANRA BAYU</h1>
-        <p style={{ color: "#6ea8ff" }}>Loading Portfolio...</p>
-      </div>
-    );
-  }
 
   return (
     <div style={styles.body}>
@@ -85,15 +73,6 @@ export default function App() {
 
       {/* HERO */}
       <section style={styles.hero}>
-        <video autoPlay muted loop style={styles.video}>
-          <source
-            src="https://cdn.coverr.co/videos/coverr-dark-code-typing-9712/1080p.mp4"
-            type="video/mp4"
-          />
-        </video>
-
-        <div style={styles.overlay}></div>
-
         <div style={styles.heroContent}>
           <h1 style={styles.title}>ANRA BAYU</h1>
           <p style={styles.subtitle}>Video Editor & Graphic Designer</p>
@@ -106,38 +85,22 @@ export default function App() {
         <h2 style={styles.heading}>About Me</h2>
         <p style={styles.text}>
           Creative video editor & graphic designer focused on cinematic storytelling,
-          motion graphics, and modern visual identity.
+          motion graphics, and clean modern design.
         </p>
       </section>
 
       {/* PROJECTS */}
-      <section id="projects" ref={sections.projects} style={{ ...styles.section, background: "#070b18", ...fade("projects") }}>
-        <h2 style={styles.heading}>Featured Projects</h2>
-        <p style={styles.text}>Hover to preview video projects</p>
+      <section id="projects" ref={sections.projects} style={{ ...styles.section, ...fade("projects") }}>
+        <h2 style={styles.heading}>Projects</h2>
 
         <div style={styles.grid}>
           {projects.map((p, i) => (
             <div key={i} style={styles.card}>
-              <div style={styles.videoBox}>
-                <video className="hoverVideo" muted loop playsInline src={p.video} />
-              </div>
-              <h3>{p.title}</h3>
-              <p style={styles.smallText}>{p.desc}</p>
-              <p style={styles.smallText}>{p.tools}</p>
+              <h3 style={styles.cardTitle}>{p.title}</h3>
+              <p style={styles.text}>{p.desc}</p>
+              <p style={styles.small}>{p.tools}</p>
             </div>
           ))}
-        </div>
-
-        {/* CASE STUDY */}
-        <div style={{ marginTop: "60px" }}>
-          <h2 style={styles.heading}>Case Study</h2>
-          <div style={styles.caseBox}>
-            <h3>Cinematic Brand Identity</h3>
-            <p style={styles.text}>
-              Project berbasis storytelling visual untuk meningkatkan engagement
-              melalui cinematic motion design.
-            </p>
-          </div>
         </div>
       </section>
 
@@ -149,23 +112,7 @@ export default function App() {
         <p style={styles.text}>Email: m.anrabayupratama1305@gmail.com</p>
       </section>
 
-      <footer style={styles.footer}>© 2026 ANRA BAYU — Creative Portfolio</footer>
-
-      <style>{`
-        html { scroll-behavior: smooth; }
-
-        .hoverVideo {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          opacity: 0;
-          transition: 0.4s ease;
-        }
-
-        .hoverVideo:hover {
-          opacity: 1;
-        }
-      `}</style>
+      <footer style={styles.footer}>© 2026 ANRA BAYU</footer>
     </div>
   );
 }
@@ -174,21 +121,10 @@ const styles = {
   body: {
     margin: 0,
     fontFamily: "Arial, sans-serif",
-    background: "black",
-    color: "white",
+    background: "#ffffff",
+    color: "#0f172a",
   },
-  loading: {
-    height: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    background: "black",
-  },
-  loadingText: {
-    fontSize: "40px",
-    letterSpacing: "8px",
-  },
+
   navbar: {
     position: "fixed",
     top: 0,
@@ -196,74 +132,66 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     padding: "15px 30px",
-    background: "rgba(0,0,0,0.6)",
+    background: "rgba(255,255,255,0.9)",
     backdropFilter: "blur(10px)",
-    zIndex: 999,
+    borderBottom: "1px solid #e5e7eb",
   },
-  logo: { color: "#6ea8ff", fontWeight: "bold" },
-  navLinks: { display: "flex", gap: "20px" },
+
+  logo: {
+    fontWeight: "bold",
+    color: "#1e3a8a",
+  },
+
+  navLinks: {
+    display: "flex",
+    gap: "20px",
+  },
 
   hero: {
     height: "100vh",
-    position: "relative",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    overflow: "hidden",
-  },
-
-  video: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    filter: "brightness(0.4) contrast(1.2)",
-  },
-
-  overlay: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    background: "linear-gradient(to bottom, rgba(0,0,0,0.5), black)",
+    background: "linear-gradient(180deg,#ffffff,#f1f5f9)",
   },
 
   heroContent: {
-    position: "relative",
     textAlign: "center",
   },
 
   title: {
-    fontSize: "64px",
-    letterSpacing: "10px",
+    fontSize: "60px",
+    letterSpacing: "6px",
+    color: "#0f172a",
   },
 
   subtitle: {
-    color: "#6ea8ff",
+    color: "#1e3a8a",
   },
 
   button: {
     display: "inline-block",
     marginTop: "20px",
     padding: "12px 24px",
-    border: "1px solid #4c8dff",
-    color: "white",
+    border: "1px solid #1e3a8a",
+    color: "#1e3a8a",
     textDecoration: "none",
   },
 
   section: {
     padding: "100px 20px",
-    maxWidth: "1000px",
+    maxWidth: "900px",
     margin: "auto",
   },
 
   heading: {
-    fontSize: "28px",
-    color: "#4c8dff",
+    fontSize: "26px",
+    color: "#1e3a8a",
     marginBottom: "20px",
   },
 
   text: {
-    color: "#cbd5e1",
+    color: "#334155",
     lineHeight: 1.7,
   },
 
@@ -271,31 +199,22 @@ const styles = {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
     gap: "20px",
-    marginTop: "30px",
   },
 
   card: {
-    border: "1px solid #1f2a44",
-    padding: "12px",
-    background: "#0b1220",
-  },
-
-  videoBox: {
-    width: "100%",
-    height: "150px",
-    overflow: "hidden",
-    background: "#111a2e",
-  },
-
-  smallText: {
-    fontSize: "12px",
-    color: "#94a3b8",
-  },
-
-  caseBox: {
     padding: "20px",
-    border: "1px solid #1f2a44",
-    background: "#0b1220",
+    border: "1px solid #e5e7eb",
+    borderRadius: "10px",
+    background: "#ffffff",
+  },
+
+  cardTitle: {
+    color: "#0f172a",
+  },
+
+  small: {
+    fontSize: "12px",
+    color: "#64748b",
   },
 
   footer: {
