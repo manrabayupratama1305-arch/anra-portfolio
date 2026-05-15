@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 
 export default function App() {
   const [visible, setVisible] = useState({});
+  const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const sections = {
@@ -63,18 +64,27 @@ export default function App() {
 
       {/* NAVBAR */}
       <div style={styles.navbar}>
-        <div style={styles.logo}>ANRA BAYU</div>
-        <div style={styles.navLinks}>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+        <div style={styles.logo}>Muhammad Anra Bayu Pratama</div>
+
+        <div style={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
+          <div style={styles.line}></div>
+          <div style={styles.line}></div>
+          <div style={styles.line}></div>
         </div>
+
+        {menuOpen && (
+          <div style={styles.mobileMenu}>
+            <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+            <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
+            <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+          </div>
+        )}
       </div>
 
       {/* HERO */}
       <section style={styles.hero}>
         <div style={styles.heroContent}>
-          <h1 style={styles.title}>ANRA BAYU</h1>
+          <h1 style={styles.title}>Hello! I'm Anra</h1>
           <p style={styles.subtitle}>Video Editor & Graphic Designer</p>
           <a href="#projects" style={styles.button}>View Projects</a>
         </div>
@@ -112,7 +122,7 @@ export default function App() {
         <p style={styles.text}>Email: m.anrabayupratama1305@gmail.com</p>
       </section>
 
-      <footer style={styles.footer}>© 2026 ANRA BAYU</footer>
+      <footer style={styles.footer}>© 2026 Muhammad Anra Bayu Pratama</footer>
     </div>
   );
 }
@@ -131,20 +141,41 @@ const styles = {
     width: "100%",
     display: "flex",
     justifyContent: "space-between",
+    alignItems: "center",
     padding: "15px 30px",
     background: "rgba(255,255,255,0.9)",
-    backdropFilter: "blur(10px)",
     borderBottom: "1px solid #e5e7eb",
   },
 
   logo: {
     fontWeight: "bold",
     color: "#1e3a8a",
+    fontSize: "14px",
   },
 
-  navLinks: {
+  hamburger: {
     display: "flex",
-    gap: "20px",
+    flexDirection: "column",
+    gap: "4px",
+    cursor: "pointer",
+  },
+
+  line: {
+    width: "22px",
+    height: "2px",
+    background: "#0f172a",
+  },
+
+  mobileMenu: {
+    position: "absolute",
+    top: "60px",
+    right: "20px",
+    background: "white",
+    border: "1px solid #e5e7eb",
+    padding: "10px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
   },
 
   hero: {
@@ -160,8 +191,7 @@ const styles = {
   },
 
   title: {
-    fontSize: "60px",
-    letterSpacing: "6px",
+    fontSize: "56px",
     color: "#0f172a",
   },
 
