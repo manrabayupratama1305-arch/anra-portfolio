@@ -58,7 +58,7 @@ export default function App() {
 
       {/* NAVBAR */}
       <div style={styles.navbar}>
-        <div style={styles.logo}>Muhammad Anra Bayu Pratama</div>
+        <div style={styles.logo}>MUHAMMAD ANRA BAYU PRATAMA</div>
 
         <div style={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
           <span style={styles.line}></span>
@@ -114,7 +114,7 @@ export default function App() {
         <p style={styles.text}>Email: m.anrabayupratama1305@gmail.com</p>
       </section>
 
-      <footer style={styles.footer}>© 2026 Muhammad Anra Bayu Pratama</footer>
+      <footer style={styles.footer}>© 2026 MUHAMMAD ANRA BAYU PRATAMA</footer>
     </div>
   );
 }
@@ -136,7 +136,7 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "15px 20px",
+    padding: "15px 50px", // DIGESER LEBIH KE DALAM
     background: "rgba(255,255,255,0.95)",
     borderBottom: "1px solid #e5e7eb",
   },
@@ -145,6 +145,7 @@ const styles = {
     fontSize: "14px",
     fontWeight: "bold",
     color: "#1e3a8a",
+    letterSpacing: "1px",
   },
 
   hamburger: {
